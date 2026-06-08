@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "anthropic-direct",
+      "name": "Anthropic Direct",
+      "protocol": "anthropic",
+      "auth": {
+        "type": "api-key",
+        "apiKey": "<your-api-key>"
+      },
+      "endpoint": {
+        "baseUrl": "https://api.anthropic.com"
+      },
+      "model": {
+        "id": "claude-opus-4-7"
+      },
+      "defaults": {
+        "timeoutSeconds": 120,
+        "maxRetries": 3,
+        "proxy": ""
+      },
+      "adapters": {
+        "claudeCode": {
+          "enabled": true,
+          "permissionMode": "default",
+          "apiKeyEnv": "ANTHROPIC_API_KEY",
+          "useSettingsEnv": true,
+          "extraEnv": {}
+        },
+        "genericAgent": {
+          "enabled": true,
+          "sessionType": "native_claude",
+          "name": "anthropic-direct",
+          "thinkingType": "adaptive",
+          "fakeCcSystemPrompt": false,
+          "thinkingBudgetTokens": 4096,
+          "contextWindow": 200000,
+          "maxTokens": 32768,
+          "temperature": 0.2,
+          "userAgent": "AIWorkerControlDesk",
+          "extraConfig": {}
+        }
+      }
+    }
+  ]
+}

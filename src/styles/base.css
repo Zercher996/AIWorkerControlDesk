@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+/* ── Scrollbar: minimal dark ── */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--scrollbar-thumb) 28%, transparent);
+  border-radius: 4px;
+  transition: background 160ms ease;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--scrollbar-thumb) 70%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--scrollbar-thumb) 45%, transparent) transparent;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+/* ── prefers-reduced-transparency: progressive enhancement ── */
+
+.reduced-transparency .profile-editor-backdrop {
+  background: var(--bg-base);
+  backdrop-filter: none;
+}
+
+.reduced-transparency .terminal-input-hint {
+  background: var(--surface-terminal);
+}
+
+/* ── Platform-specific overrides ── */
+
+.windows-desktop select,
+.windows-desktop select option {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+}

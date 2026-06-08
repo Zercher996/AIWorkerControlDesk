@@ -1,0 +1,35 @@
+[
+  {
+    "id": "anthropic-sonnet",
+    "name": "Anthropic Sonnet 4.6",
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "env": {
+      "ANTHROPIC_API_KEY": "<your-anthropic-api-key>"
+    },
+    "permissionMode": "default"
+  },
+  {
+    "id": "compatible-sonnet",
+    "name": "Anthropic Compatible Provider",
+    "provider": "anthropic-compatible",
+    "model": "claude-sonnet-4-6",
+    "env": {
+      "ANTHROPIC_AUTH_TOKEN": "<your-auth-token>",
+      "ANTHROPIC_BASE_URL": "https://your-compatible-endpoint.example/v1"
+    },
+    "permissionMode": "default"
+  },
+  {
+    "id": "generic-agent-local",
+    "name": "GenericAgent Local",
+    "provider": "generic",
+    "model": "generic-agent",
+    "env": {
+      "GENERIC_AGENT_HOME": "<path-to-generic-agent>",
+      "GENERIC_AGENT_PYTHON": "python",
+      "GENERIC_AGENT_ENTRY": "agentmain.py"
+    },
+    "permissionMode": "default"
+  }
+]

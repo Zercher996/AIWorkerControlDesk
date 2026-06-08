@@ -1,0 +1,10 @@
+[
+  {
+    "id": "generic-agent-local",
+    "name": "GenericAgent Local",
+    "home": "<path-to-generic-agent>",
+    "pythonCommand": "python",
+    "entryScript": "agentmain.py",
+    "env": {}
+  }
+]

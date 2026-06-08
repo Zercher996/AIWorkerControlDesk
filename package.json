@@ -1,0 +1,90 @@
+{
+  "name": "ai-worker-control-desk",
+  "version": "0.1.0",
+  "description": "Local AI worker control desk",
+  "private": true,
+  "type": "module",
+  "main": "./out/main/main.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify:local": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "verify:practical": "npm run verify:local && node scripts/e2e/practical-loop.cjs",
+    "verify:release": "npm run verify:practical && node scripts/e2e/release-smoke.cjs --practical && node scripts/e2e/rc-click-through.cjs",
+    "verify:installer": "npm run pack:dir && node scripts/e2e/installer-smoke.cjs",
+    "pack:dir": "npm run build && node scripts/rebuild-pty.mjs && electron-builder --dir --win --x64",
+    "pack:win": "npm run build && node scripts/rebuild-pty.mjs && electron-builder --win nsis --x64",
+    "postinstall": "node scripts/rebuild-pty.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.95.1",
+    "@xterm/addon-fit": "0.12.0-beta.219",
+    "@xterm/xterm": "6.1.0-beta.219",
+    "node-pty": "^1.1.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "@eslint/js": "^10.0.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.6.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^42.0.1",
+    "electron-builder": "^26.15.2",
+    "electron-vite": "^5.0.0",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.60.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^7.3.3",
+    "vitest": "^4.1.5"
+  },
+  "build": {
+    "appId": "local.aiworker.controldesk",
+    "productName": "AIWorkerControlDesk",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**",
+      "package.json",
+      "configs/*.example.json",
+      "docs/guides/release-candidate-user-guide.md"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/node-pty/**",
+      "**/*.node"
+    ],
+    "npmRebuild": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
