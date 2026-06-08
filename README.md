@@ -4,6 +4,36 @@
 
 AIWorkerControlDesk 是一个本地 AI Worker 调度台，用来在多个本地项目中启动、观察、接管和续工真实的 Claude Code / CLI Worker Session。
 
+它的核心不是「再做一个聊天窗口」，而是帮你一眼看清：哪个项目在跑 Worker、哪个 Session 在等待或失败、当前输出要不要接管、结束后能不能基于 Summary 继续。
+
+## 界面预览
+
+### 主界面：三栏调度，深色 / 浅色双主题
+
+左栏选项目与模型并启动 Worker，中栏是 Session Radar 总览全部会话，右栏是当前 Session 的 AI 输入输出页。深浅主题一键切换。
+
+![深色主题主界面：左栏项目与模型、中栏调度中心、右栏 AI 输入输出页](docs/screenshots/home-dark.png)
+
+![浅色主题主界面：同一三栏布局的亮色版本](docs/screenshots/home-light.png)
+
+### 多会话调度：父子 Session 一屏掌控
+
+中栏 Radar 用「全 / 待 / 进 / 完」分组，把多个并行 Worker 的现场状态收在一处，避免在多个 CLI 窗口之间来回切换、盯花眼。
+
+![功能总览：父 Claude Code 会话与多个子会话并行调度](docs/screenshots/feature-overview.png)
+
+### 调用 GenericAgent：把独立任务分派给通用智能体
+
+开启自动协助后，Claude Code 可以把独立子任务分派给 GenericAgent 通用智能体执行，完成后再把结果自动回传给父会话。
+
+![Claude Code 调用 GenericAgent 通用智能体并自动回传结果](docs/screenshots/dispatch-generic-agent.png)
+
+### 基于 Summary 续工：生成新的上下文窗口继续
+
+Session 结束后，可以先生成 Summary，再基于它新建一个真实 Session 继续任务。续工是「带着上下文重新开一个真实会话」，不是恢复旧 CLI 运行态。
+
+![基于 Session Summary 生成新的上下文窗口继续任务](docs/screenshots/summary-resume.png)
+
 ## 怎么跑
 
 1. clone 仓库
